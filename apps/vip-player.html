@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>VIP播放器</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/video.js/7.4.1/video-js.min.css">
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/video.js/7.4.1/video.min.js"></script>
+<script>
+	videojs.options.flash.swf = "js/video-js.swf";
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#apis")[0].selectedIndex = 0;
+		$("#searchengine")[0].selectedIndex = 0;
+		//window.history.back(-1);
+		$("#searchbt").click(function() {
+			var searchvalue = $("#searchvalue").val();
+			var searchengine = $("#searchengine").val();
+			$(".video-search").html('<iframe id="play-box" height="100%" width="100%" src='
+				+ searchengine
+				+ searchvalue
+				+ ' frameborder=0 border="0" marginwidth="0" marginheight="0" allowfullscreen="true"></iframe>');
+		});
+
+		$("#vipbt")
+				.click(
+						function() {
+							var source = $("#vipsource").val();
+							var api = $("#apis").val();
+							$(".video-area")
+									.html(
+											'<iframe id="play-box" height="100%" width="100%" src='
+													+ api
+													+ source
+													+ ' frameborder=0 border="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="true"></iframe>');
+						});
+	})
+</script>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+				<span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">WHUTYS</a>
+		</div>
+		<div class="collapse navbar-collapse" id="example-navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/"><span class="glyphicon glyphicon-user"></span>我的主页</a></li>
+				<li><a href="http://10.141.123.6/clouddisk/index.jsp"><span class="glyphicon glyphicon-home"></span>首页</a></li>
+				<li><a href="http://10.141.123.6/clouddisk/help.jsp"><span class="glyphicon glyphicon-info-sign"></span>帮助</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<div class="input-group">
+					<div class="input-group-btn">
+						<select id="searchengine" class="btn btn-default dropdown-toggle">
+								<option value="https://so.iqiyi.com/so/q_">爱奇艺
+							
+								</option><option value="https://so.youku.com/search_video/q_">优酷
+							
+								</option><option value="https://v.qq.com/x/search/?q=">腾讯视频
+							
+								</option><option value="https://so.tv.sohu.com/mts?wd=">搜狐视频
+							
+								</option><option value="http://so.le.com/s?wd=">乐视视频
+							</option></select>
+					</div>
+					<input id="searchvalue" type="text" class="form-control"> <span id="searchbt" class="input-group-addon btn">视频搜索</span>
+				</div>
+				<div class="input-group">
+					<div class="input-group-btn">
+						<select id="apis" class="btn btn-default dropdown-toggle">
+								<option value="http://jiexi.92fz.cn/player/vip.php?url=">解析1</option>
+							
+								<option value="http://www.dgua.xyz/webcloud/?url=">解析2</option>
+							
+								<option value="http://vb.tshu.top/webcloud/?url=">解析3</option>
+							
+								<option value="http://api.hlglwl.com/jx.php?url=">解析4</option>
+							
+								<option value="http://vip.jlsprh.com/index.php?url=">解析5</option>
+							
+								<option value="http://app.baiyug.cn:2019/vip/?url=">解析6</option>
+							
+						</select>
+					</div>
+					<input id="vipsource" type="text" class="form-control"> <span id="vipbt" class="input-group-addon btn">立即播放</span>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="video-search" style="height: 500px;background-color: #FFF;color: #333"></div>
+			</div>
+			<div class="col-lg-6">
+				<div class="video-area" style="height: 500px;background-color: #FFF;color: #333"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
