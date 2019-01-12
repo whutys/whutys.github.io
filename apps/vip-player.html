@@ -14,9 +14,16 @@
 <style type="text/css">
         .video-search, .video-area {
             position: relative;
-            padding: 0 0 70% 0;
+            /*padding: 0 0 70% 0;*/
+            padding-bottom: 70%;
+            height: 0;
+            overflow: hidden;
             background-color: #000000;
             color: #ac2925;
+        }
+
+        #search-box,#video-box{
+        	position: absolute;
         }
 
         .div-inline {
@@ -36,10 +43,11 @@ videojs.options.flash.swf = "js/video-js.swf";
 		$("#searchbt").click(function() {
 			var searchValue = $("#searchValue").val();
 			var searchengine = $("#searchengine").val();
-			$(".video-search").html('<iframe id="play-box" height="100%" width="100%" src='
-				+ searchengine
-				+ searchValue
-				+ ' frameborder=0 border="0" marginwidth="0" marginheight="0" allowfullscreen="true"></iframe>');
+			$("#search-box").attr('src',searchengine+searchValue);
+			// $(".video-search").html('<iframe id="play-box" height="100%" width="100%" src='
+			// 	+ searchengine
+			// 	+ searchValue
+			// 	+ ' frameborder=0 border="0" marginwidth="0" marginheight="0" allowfullscreen="true"></iframe>');
 		});
 
 		$("#vipbt")
@@ -47,12 +55,7 @@ videojs.options.flash.swf = "js/video-js.swf";
 						function() {
 							var source = $("#vipSource").val();
 							var api = $("#apis").val();
-							$(".video-area")
-									.html(
-											'<iframe id="play-box" height="100%" width="100%" src='
-													+ api
-													+ source
-													+ ' frameborder=0 border="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="true"></iframe>');
+							$("#video-box").attr('src',api+source);
 						});
 		document.onkeydown = function (e) {
                 var ev = (typeof event != 'undefined') ? window.event : e;
@@ -126,10 +129,14 @@ videojs.options.flash.swf = "js/video-js.swf";
 		<br>
 		<div class="row">
 			<div class="col-lg-6">
-				<div class="video-search"></div>
+				<div class="video-search">
+					<iframe id="search-box" height="100%" width="100%" src='' frameborder=0 border="0" marginwidth="0" marginheight="0" allowfullscreen="true"></iframe>
+				</div>
 			</div>
 			<div class="col-lg-6">
-				<div class="video-area"></div>
+				<div class="video-area">
+					<iframe id="video-box" height="100%" width="100%" src='' frameborder=0 border="0" marginwidth="0" marginheight="0" allowfullscreen="true"></iframe>
+				</div>
 			</div>
 		</div>
 	</div>
