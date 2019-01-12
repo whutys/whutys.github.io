@@ -11,6 +11,19 @@
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.bootcss.com/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdn.bootcss.com/video.js/7.4.1/video.min.js"></script>
+<style type="text/css">
+        .video-search, .video-area {
+            position: relative;
+            padding: 0 0 70% 0;
+            background-color: #000000;
+            color: #ac2925;
+        }
+
+        .div-inline {
+            float: left;
+            display: inline;
+        }
+    </style>
 <script>
 videojs.options.flash.swf = "js/video-js.swf";
 </script>
@@ -41,6 +54,14 @@ videojs.options.flash.swf = "js/video-js.swf";
 													+ source
 													+ ' frameborder=0 border="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="true"></iframe>');
 						});
+		document.onkeydown = function (e) {
+                var ev = (typeof event != 'undefined') ? window.event : e;
+                if (ev.keyCode == 13 && document.activeElement.id == "searchValue") {
+                    $("#searchbt").click();
+                } else if (ev.keyCode == 13 && document.activeElement.id == "vipSource") {
+                    $("#vipbt").click();
+                }
+            };
 	})
 </script>
 </head>
@@ -77,7 +98,7 @@ videojs.options.flash.swf = "js/video-js.swf";
 								</option><option value="https://so.le.com/s?wd=">乐视视频
 							</option></select>
 					</div>
-					<input id="searchvalue" type="text" class="form-control"> <span id="searchbt" class="input-group-addon btn">视频搜索</span>
+					<input id="searchvalue" type="text" class="form-control" onfocus="this.select()"> <span id="searchbt" class="input-group-addon btn">视频搜索</span>
 				</div>
 				<div class="input-group">
 					<div class="input-group-btn">
@@ -98,17 +119,17 @@ videojs.options.flash.swf = "js/video-js.swf";
 							
 						</select>
 					</div>
-					<input id="vipsource" type="text" class="form-control"> <span id="vipbt" class="input-group-addon btn">立即播放</span>
+					<input id="vipsource" type="text" class="form-control" onfocus="this.select()"> <span id="vipbt" class="input-group-addon btn">立即播放</span>
 				</div>
 			</div>
 		</div>
 		<br>
 		<div class="row">
 			<div class="col-lg-6">
-				<div class="video-search" style="height: 500px;background-color: #FFF;color: #333"></div>
+				<div class="video-search"></div>
 			</div>
 			<div class="col-lg-6">
-				<div class="video-area" style="height: 500px;background-color: #FFF;color: #333"></div>
+				<div class="video-area"></div>
 			</div>
 		</div>
 	</div>
